@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+ Write your code here
+</body>
+
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Tool for Blogger</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>SEO Tool for Blogger</h1>
+    <textarea id="content" placeholder="Paste your content here..."></textarea>
+    <button onclick="analyzeContent()">Analyze</button>
+    <div class="results">
+        <h3>Results:</h3>
+        <div id="keywordDensity"></div>
+        <div id="readabilityScore"></div>
+        <div id="metaTags"></div>
+        <div id="headingStructure"></div>
+    </div>
+
+    <script>
+        function analyzeContent() {
+            const content = document.getElementById('content').value;
+            const keywordDensity = calculateKeywordDensity(content, 'your keyword'); // Replace with actual keyword
+            const readabilityScore = calculateReadability(content);
+
+            document.getElementById('keywordDensity').innerText = `Keyword Density: ${keywordDensity}%`;
+            document.getElementById('readabilityScore').innerText = `Readability Score: ${readabilityScore}`;
+        }
+
+        function calculateKeywordDensity(text, keyword) {
+            const words = text.split(/\s+/).length;
+            const keywordCount = (text.match(new RegExp(keyword, "gi")) || []).length;
+            return ((keywordCount / words) * 100).toFixed(2);
+        }
+
+        function calculateReadability(text) {
+            const words = text.split(/\s+/).length;
+            const sentences = text.split(/[.!?]/).length;
+            const syllables = text.split(/[aeiouy]/).length - 1;
+
+            return (206.835 - 1.015 * (words / sentences) - 84.6 * (syllables / words)).toFixed(2);
+        }
+    </script>
+</body>
+</html>
